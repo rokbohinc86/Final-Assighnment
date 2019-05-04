@@ -1,0 +1,23 @@
+The "run_analysis" script computes "data" and "tidydata" data sets from the the training and test data sets.
+
+The "data" data set gets the column names from file from features.txt and converst them in the following was:
+- "t" is replaced by "time"
+- "f" is replaced by "frequency"
+- "gyro" is replaced with "-gyroscope"
+- "acc" is replaced with "accelerometer"
+- "std" is replaced with "standarddeviation"
+- "Mag" is repositioned at the end of the string
+- "()" are omitted
+- names with "jerk" are replaced with "yes", names without "jerk" are replaced with "no"
+- "bodybody" is replaced with "body"
+
+The names are fromated into categories: "domain","acceleration","device","derived","type","coordinate", sepparated with "-". 
+For example, columnname "time-body-accelerometer-no-mean-x" correspond to domain=time, acceleration=body, device=accelerometer
+derrived=no, type=mean, coordinate=x. The values from this columns are unalterd from the original files and normalized and 
+bounded within [-1,1]. Additionaly it contains columns "activity", corresponding to the activity label from files "y_train.txt"
+and "y_test.txt" masekd with the values from "activity_labels.txt", and "subject" corresponding to file "subject_train.txt".
+
+The "tidydata" data set contains columns "activity", "subject", "domain","acceleration","device","derived","type","coordinate" 
+and "value". Columns "activity", "subject", "domain","acceleration","device","derived","type","coordinate" are derived from "data"
+column names. The "value" correspond to the mean of the values from "data" with same "activity", "subject", "domain","acceleration",
+"device","derived","type","coordinate" values. 
